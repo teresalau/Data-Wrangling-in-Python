@@ -44,7 +44,24 @@ Now that the column headers no longer contain any data value, there is another m
 Fortunately, when I renamed the columns after bringing in the dataset into Python, I intentionally chose to seperate the sex and year by a common delimiter "_". Thus, I used the *str.split( )* function in Python to split the two strings – values that indicates sex and year – into two separate columns. Afterwards, I renamed the shorthands for male (M) and female (F) to the proper nouns in case that might cause confustions to others. Here is what the new dataframe looks like after the cleaning. 
 ![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/8ba28a17-49f9-4760-b85a-c0f17cbd7fa9)
 
+## 5. Tidy Data Issue (3): Variables Are Stored In Both Rows And Columns 
+The next tidy data issue is a combination of the first and second principles. According the Wickham, individual data points should be stored in cells, and cells are organized as rows and defined by columns. However, if looked closely to the UN dataset prior to cleaning, it stores major areas and regions, such as continent names (e.g., Africa) and regions (e.g., Eastern Africa) in the same column as the countries (e.g., Burundi). Combining this issue with the fact that year and gender values are being stored in the column headers, important information is scattered across rows and columns in the data table, making it hard to analyze computationally 
+![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/f615e674-a533-47ff-a785-b9d58395d029)
+Following what has been discussed under tidy data issue (1) and (2), the natural next steps would be unpivoting the values (e.g., Sex and Year) from the column headers and seperate these two variables into respective columns. However, this method does not solve the biggest issue which is that the data of continent, regions, and invidual countries were stored in the same column. If this issue is not resolved, the population/migrant values will be double counted as the total will be added to the sum of individual countries.
 
+While there are a lot of different ways to extract the continents and regions from the dataset, I recognized that performing an inner join with the annex table, which contains a list of individual countries and their respective continents and regions would be the easiest way. As seen in the below screenshot, the annex table has the exact same data structure I would like to organize the geography in. Therefore, I used the *df.set_indec ( )* to set the country code as the primary key, and performed an inner join using *df.join(how = inner)* to merge two tables together. 
+![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/87ce482c-694e-4cb6-82c7-d1dd85b7d051)
+Because the continent and region names were not in the annex table, they got dropped following the inner join. Here is what the new table looks like after the broader geographical regions got pulled from the country column. 
+![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/695737d4-ed11-4a85-8dc1-a81780d8bca4)
 
+## 6. Tidy Data Issue (4): Multiple Observations Types in One Table
+This issue is only found in one of the six tables in the dataset. As seen in below screenshot, there are three types of data being stored in the same table: (1) Estimated refugees stock at mid-year (both sexes), (2) Refugees as percentage of the international migrant stock, and (3) Annual rate of change of the refugee stock. 
+![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/ced10dbc-3224-4f46-b24c-9aaf0abb735a)
+To clean this table, I assigned the name of the indicator the value represents when unpivoting the column headers. Afterwards, I created three new dataframes by extracting the rows from the original table.
+![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/5234e4d9-dcc2-49f9-a17a-99e51d1095d8)
 
+## 7. Tidy Data Issue (5): One Observation Type in Multitple Tables
+The last tidy data issue is like the opposite of the first one. It concerns how the same type of obserbation unit (e.g., populuation, migrant percentage, etc.) is being stored across multiple tables. The UN dataset used did not exactly have this issue because each table contains unique information concerning international migrants. An example of this issue raised by Wickham is how storing the most popular baby names over the past 10 years in 10 seperate tables while they should be stored in one tables with an additional columns added to define the year. 
 
+## 8. Conclusion: Clean Data is the Foundation for Data Visualization
+Programming languages and many data viz software like Tableau and Power BI take columns as the foundation of variables, and subsequently take variables as the units of analysis. Therefore, it is imperative for the data to be organized 
