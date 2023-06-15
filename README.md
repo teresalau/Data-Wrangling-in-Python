@@ -1,7 +1,11 @@
 # Data Wrangling in Python using Tidy Data Principles
 
-## 1. What is the Tidy Data Principles
-The concept of "tidy data" originates from a paper published by Hadley Wickham in the Journal of Statistical Software. It is a set of best practices recommended by Wickham in preparing data for statistical analysis. If a dataset is organized using the tidy data principls, then it will follow the below structure: 
+## 1. What is Data Wrangling and the Tidy Data Principles
+
+[Data wrangling](https://online.hbs.edu/blog/post/data-wrangling) refers to the steps and processes taken to tramsform raw data to usable formats for further data analysis. It can include combining or seperating data sources, removing or filling in missing/outliers data, transforming the structure of the dataset, and other strategies employed to ensure the data is of high quality to safeguard the integrity of the data analysis. Why? Because garbage in, garbage out - having clean and useable data is the foundation of valid and reliable data analysis. 
+
+The concept of "tidy data" originates from the paper published by Hadley Wickham in [the Journal of Statistical Software](https://vita.had.co.nz/papers/tidy-data.pdf). It is a set of best practices recommended by Wickham in preparing data for statistical analysis. If a dataset is organized using the tidy data principls, then it will follow the below structure: 
+
 1. Every column is a variable
 2. Every row is an observation
 3. Every cell is a single value
@@ -51,6 +55,7 @@ Following what has been discussed under tidy data issue (1) and (2), the natural
 
 While there are a lot of different ways to extract the continents and regions from the dataset, I recognized that performing an inner join with the annex table, which contains a list of individual countries and their respective continents and regions would be the easiest way. As seen in the below screenshot, the annex table has the exact same data structure I would like to organize the geography in. Therefore, I used the *df.set_indec ( )* to set the country code as the primary key, and performed an inner join using *df.join(how = inner)* to merge two tables together. 
 ![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/87ce482c-694e-4cb6-82c7-d1dd85b7d051)
+
 Because the continent and region names were not in the annex table, they got dropped following the inner join. Here is what the new table looks like after the broader geographical regions got pulled from the country column. 
 ![image](https://github.com/teresalau/Data-Wrangling-in-Python/assets/113483358/695737d4-ed11-4a85-8dc1-a81780d8bca4)
 
@@ -64,4 +69,4 @@ To clean this table, I assigned the name of the indicator the value represents w
 The last tidy data issue is like the opposite of the first one. It concerns how the same type of obserbation unit (e.g., populuation, migrant percentage, etc.) is being stored across multiple tables. The UN dataset used did not exactly have this issue because each table contains unique information concerning international migrants. An example of this issue raised by Wickham is how storing the most popular baby names over the past 10 years in 10 seperate tables while they should be stored in one tables with an additional columns added to define the year. 
 
 ## 8. Conclusion: Clean Data is the Foundation for Data Visualization
-Programming languages and many data viz software like Tableau and Power BI take columns as the foundation of variables, and subsequently take variables as the units of analysis. Therefore, it is imperative for the data to be organized 
+Programming languages and many data viz software like Tableau and Power BI take columns as the foundation of variables, and subsequently take variables as the units of analysis. Therefore, it is imperative for the data to be organized in the tidy data framework to enable data visualization and other exploratory data analysis techniques.
