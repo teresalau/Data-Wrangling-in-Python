@@ -2,15 +2,15 @@
 
 ## 1. What is Data Wrangling and the Tidy Data Principles
 
-[Data wrangling](https://online.hbs.edu/blog/post/data-wrangling) refers to the steps and processes taken to transform raw data to usable formats for further data analysis. It can include combining or seperating data sources, removing or filling in missing/outliers data, transforming the structure of the dataset, and other strategies employed to ensure the data is of high quality to safeguard the integrity of the data analysis. Why? Because garbage in, garbage out - having clean and useable data is the foundation of valid and reliable data analysis. 
+[Data wrangling](https://online.hbs.edu/blog/post/data-wrangling) refers to the steps and processes taken to transform raw data to usable formats for further data analysis. It can include combining or seperating data sources, removing or filling in missing/outliers data, transforming the structure of the dataset, and other strategies employed to ensure the data is of high quality and safeguard the integrity of the data analysis. Why? Because garbage in, garbage out - having clean and useable data is the foundation of valid and reliable data analysis. 
 
-The concept of "tidy data" originates from the paper published by Hadley Wickham in [the Journal of Statistical Software](https://vita.had.co.nz/papers/tidy-data.pdf). It is a set of best practices recommended by Wickham in preparing data for statistical analysis. If a dataset is organized using the tidy data principls, then it will follow the below structure: 
+The concept of "tidy data" originates from the paper published by Hadley Wickham in [the Journal of Statistical Software](https://vita.had.co.nz/papers/tidy-data.pdf). It is a set of best practices recommended by Wickham in preparing data for statistical analysis. If a dataset is organized using the tidy data principles, it will follow the below structure: 
 
 1. Every column is a variable
 2. Every row is an observation
 3. Every cell is a single value
 
-It might be hard to envision the above principles in practice, but it it be easier to see how a dataset could be messy. According to Wickham, messy data often falls under one or more of the below common problems: 
+It can be hard to envision the above principles in practice, but it be easier to see how a dataset could be messy. According to Wickham, messy data often falls under one or more of the below common problems: 
 1. Column headers are values, not variable names
 2. Multiple variables are stored in one column
 3. Variables are stored in both rows and columns
